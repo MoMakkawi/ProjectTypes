@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjectTypes.UI.Models.ProjectType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-controller="ProjectTypes" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var projectType in Model)
+            {
+                <tr>
+                    <td>@projectType.Id</td>
+                    <td>@projectType.Name</td>
+                    <td>
+                        <a asp-controller="ProjectTypes" asp-action="Details" asp-route-id="@projectType.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-controller="ProjectTypes" asp-action="Edit" asp-route-id="@projectType.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-controller="ProjectTypes" asp-action="Delete" asp-route-id="@projectType.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center">No project types available</td>
+            </tr>
+        }
+    </tbody>
+</table>
